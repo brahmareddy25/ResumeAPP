@@ -1,0 +1,113 @@
+/* Main container */
+.dashboard-container {
+  background-color: #141414;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Profile card */
+.profile-card {
+  background-color: #1f1f1f;
+  color: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+}
+
+/* Photo */
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e50914;
+  margin-bottom: 15px;
+}
+
+/* Placeholder photo */
+.no-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #333;
+  color: #aaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #e50914;
+  margin: 0 auto 15px auto;
+}
+
+/* Username */
+.username {
+  color: #e50914;
+  margin-bottom: 20px;
+}
+
+/* User info */
+.user-info p {
+  margin: 5px 0;
+}
+
+/* Social links */
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.btn-link {
+  background-color: transparent;
+  border: 1px solid #e50914;
+  color: #e50914;
+  padding: 8px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-link:hover {
+  background-color: #e50914;
+  color: #fff;
+}
+
+/* Action buttons */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ff1e1e;
+}
+
+/* Logout button */
+.logout {
+  background-color: #555;
+}
+
+.logout:hover {
+  background-color: #777;
+}

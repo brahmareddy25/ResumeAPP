@@ -1,0 +1,130 @@
+<app-navbar></app-navbar>
+<div class="education-dashboard">
+  <h2>🎓 My Education</h2>
+
+  <!-- Education Table-like Container -->
+  <div class="education-container">
+    <div class="edu-header">
+      <span>Qualification</span>
+      <span>School/College</span>
+      <span>Stream</span>
+      <span>Year</span>
+      <span>Marks</span>
+      <span>Type of Marks</span>
+      <span>Certificate</span>
+      <span>Actions</span>
+    </div>
+
+    <div class="edu-row" *ngFor="let edu of educationList">
+      <span>{{ edu.qualification }}</span>
+      <span>{{ edu.schoolOrCollege }}</span>
+      <span>{{ edu.stream }}</span>
+      <span>{{ edu.yearOfPassed }}</span>
+      <span>{{ edu.marksObtained }}</span>
+      <span>{{ edu.typeOfMarks }}</span>
+      <span *ngIf="edu.certificate">
+      <button type="button" class="btn-view" (click)="viewCertificate(edu.certificate)">
+        📄 View
+      </button>
+    </span>
+
+      <span class="edu-actions">
+        <button class="btn-edit" (click)="onEdit(edu)">✏️ Edit</button>
+        <p></p>
+        <button class="btn-delete" (click)="onDelete(edu.educationId)">
+          🗑 Delete
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <!-- Add/Edit Form -->
+  <div class="add-edu-form">
+    <h3>{{ isEditing ? '✏️ Edit Education' : '➕ Add Education' }}</h3>
+
+    <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div class="form-row">
+        <label>Qualification:</label>
+        <input
+          type="text"
+          [(ngModel)]="newEducation.qualification"
+          name="qualification"
+          required
+        />
+      </div>
+
+      <div class="form-row">
+        <label>School/College:</label>
+        <input
+          type="text"
+          [(ngModel)]="newEducation.schoolOrCollege"
+          name="schoolOrCollege"
+          required
+        />
+      </div>
+
+      <div class="form-row">
+        <label>Stream:</label>
+        <input
+          type="text"
+          [(ngModel)]="newEducation.stream"
+          name="stream"
+          required
+        />
+      </div>
+
+      <div class="form-row">
+        <label>Year of Passing:</label>
+        <select
+          [(ngModel)]="newEducation.yearOfPassed"
+          name="yearOfPassed"
+          required
+        >
+          <option value="" disabled selected>Select Year</option>
+          <option *ngFor="let year of years" [value]="year">
+            {{ year }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Marks Obtained:</label>
+        <input
+          type="number"
+          min="1"
+          [(ngModel)]="newEducation.marksObtained"
+          name="marksObtained"
+          required
+        />
+      </div>
+
+      <div class="form-row">
+        <label>Type of Marks:</label>
+        <select
+          [(ngModel)]="newEducation.typeOfMarks"
+          name="typeOfMarks"
+          required
+        >
+          <option value="" disabled selected>Select Type</option>
+          <option *ngFor="let type of markTypes" [value]="type">
+            {{ type }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Upload Certificate (PDF/Image):</label>
+        <input
+          type="file"
+          (change)="onFileChange($event)"
+          [required]="!isEditing"
+          accept=".pdf, .jpg, .jpeg, .png"
+        />
+      </div>
+
+      <button type="submit" class="btn-add">
+        {{ isEditing ? 'Update Education' : 'Add Education' }}
+      </button>
+    </form>
+  </div>
+</div>

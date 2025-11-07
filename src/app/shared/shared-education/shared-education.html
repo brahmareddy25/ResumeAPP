@@ -1,0 +1,32 @@
+<app-shared-navbar></app-shared-navbar>
+<div class="education-dashboard">
+  <h2>🎓 My Education</h2>
+
+  <!-- Education Table-like Container -->
+  <div class="education-container">
+    <div class="edu-header">
+      <span>Qualification</span>
+      <span>School/College</span>
+      <span>Stream</span>
+      <span>Year</span>
+      <span>Marks</span>
+      <span>Type of Marks</span>
+      <span>Certificate</span>
+    </div>
+
+    <div class="edu-row" *ngFor="let edu of educationList">
+      <span>{{ edu.qualification }}</span>
+      <span>{{ edu.schoolOrCollege }}</span>
+      <span>{{ edu.stream }}</span>
+      <span>{{ edu.yearOfPassed }}</span>
+      <span>{{ edu.marksObtained }}</span>
+      <span>{{ edu.typeOfMarks }}</span>
+ <span *ngIf="edu.certificate">
+      <button type="button" class="btn-view" (click)="viewCertificate(edu.certificate)">
+        📄 View
+      </button>
+    </span>
+    </div>
+  </div>
+
+  

@@ -1,0 +1,33 @@
+<app-shared-navbar></app-shared-navbar>
+<div class="education-dashboard">
+
+
+  <h2>💼 My Internships</h2>
+
+  <!-- Internship Table-like Container -->
+  <div class="education-container">
+    <div class="edu-header">
+      <span>Company</span>
+      <span>Role</span>
+      <span>Start Date</span>
+      <span>End Date</span>
+      <span>Description</span>
+      <span>Certificate</span>
+    </div>
+
+    <div class="edu-row" *ngFor="let intern of internshipList">
+      <span>{{ intern.companyName }}</span>
+      <span>{{ intern.role }}</span>
+      <span>{{ intern.startDate }}</span>
+      <span>{{ intern.endDate }}</span>
+      <span>{{ intern.description }}</span>
+      <span *ngIf="intern.certificate">
+      <button type="button" class="btn-view" (click)="viewCertificate(intern.certificate)">
+        📄 View
+      </button>
+    </span>
+      
+    </div>
+  </div>
+
+ 

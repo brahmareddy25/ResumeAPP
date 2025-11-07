@@ -1,0 +1,121 @@
+.education-dashboard {
+  background-color: #141414;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 40px 60px;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Title */
+.education-dashboard h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #e50914;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* Table-like container */
+.education-container {
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 0 5px 25px rgba(229, 9, 20, 0.25);
+  overflow-x: auto;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+
+/* Header and row grid structure */
+.edu-header,
+.edu-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 15px 25px;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+/* Header styling */
+.edu-header {
+  font-weight: 700;
+  font-size: 1rem;
+  background-color: #000;
+  border-bottom: 2px solid #e50914;
+  text-transform: uppercase;
+}
+
+/* Data rows */
+.edu-row {
+  border-bottom: 1px solid #333;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.edu-row:hover {
+  background-color: rgba(229, 9, 20, 0.15);
+  transform: scale(1.01);
+}
+
+/* Certificate button */
+.btn-view {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: #e50914;
+  border-radius: 6px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.btn-view:hover {
+  background-color: #ff1a2c;
+}
+
+/* Scrollbar styling for horizontal overflow */
+.education-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.education-container::-webkit-scrollbar-thumb {
+  background-color: #e50914;
+  border-radius: 4px;
+}
+
+/* Responsive for smaller devices */
+@media (max-width: 1024px) {
+  .education-dashboard {
+    padding: 25px;
+  }
+
+  .edu-header,
+  .edu-row {
+    grid-template-columns: repeat(4, 1fr);
+    font-size: 0.9rem;
+  }
+
+  .edu-row span:nth-child(n + 5) {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .education-dashboard h2 {
+    font-size: 1.8rem;
+  }
+
+  .edu-header,
+  .edu-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .btn-view {
+    font-size: 0.8rem;
+    padding: 5px 8px;
+  }
+}

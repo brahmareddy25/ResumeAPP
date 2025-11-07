@@ -1,0 +1,24 @@
+<app-shared-navbar></app-shared-navbar>
+<div class="education-dashboard">
+  <h2>🏆 My Certifications</h2>
+
+  <!-- Certification Table -->
+  <div class="education-container" style="min-height: auto;">
+    <div class="edu-header">
+      <span>Certificate Name</span>
+      <span>Date of Got</span>
+      <span>Certificate</span>
+    </div>
+
+    <div class="edu-row" *ngFor="let cert of certificationList">
+      <span>{{ cert.certificateName }}</span>
+      <span>{{ cert.dateOfGot }}</span>
+      <span *ngIf="cert.certificateFile">
+      <button type="button" class="btn-view" (click)="viewCertificate(cert.certificateFile)">
+        📄 View
+      </button>
+    </span>
+    </div>
+  </div>
+
+  

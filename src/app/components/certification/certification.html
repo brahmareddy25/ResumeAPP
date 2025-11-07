@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+
+<div class="education-dashboard">
+  <h2>🏆 My Certifications</h2>
+
+  <!-- Certification Table -->
+  <div class="education-container" style="min-height: auto;">
+    <div class="edu-header">
+      <span>Certificate Name</span>
+      <span>Date of Got</span>
+      <span>Certificate</span>
+      <span>Actions</span>
+    </div>
+
+    <div class="edu-row" *ngFor="let cert of certificationList">
+      <span>{{ cert.certificateName }}</span>
+      <span>{{ cert.dateOfGot | date: 'yyyy-MM-dd' }}</span>
+      
+   <span *ngIf="cert.certificateFile">
+      <button type="button" class="btn-view" (click)="viewCertificate(cert.certificateFile)">
+        📄 View
+      </button>
+    </span>
+      <span class="edu-actions">
+        <button class="btn-edit" (click)="onEdit(cert)">✏️ Edit</button>
+        <p></p>
+        <button class="btn-delete" (click)="onDelete(cert.certificationId)">🗑 Delete</button>
+      </span>
+    </div>
+  </div>
+
+  <!-- Add/Edit Form -->
+  <div class="add-edu-form" style="max-width: 800px;">
+    <h3>{{ isEditing ? '✏️ Edit Certification' : '➕ Add Certification' }}</h3>
+
+    <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div class="form-row">
+        <label>Certificate Name:</label>
+        <input type="text"
+               [(ngModel)]="newCertification.certificateName"
+               name="certificateName"
+               required
+               placeholder="Enter certificate name" />
+      </div>
+
+      <div class="form-row">
+        <label>Date of Got:</label>
+        <input type="date"
+               [(ngModel)]="newCertification.dateOfGot"
+               name="dateOfGot"
+               required />
+      </div>
+
+      <div class="form-row">
+        <label>Certificate (PDF/Image):</label>
+        <input type="file" (change)="onFileChange($event)" [required]="!isEditing" />
+      </div>
+
+      <button type="submit" class="btn-add">
+        {{ isEditing ? 'Update Certification' : 'Add Certification' }}
+      </button>
+    </form>
+  </div>
+</div>

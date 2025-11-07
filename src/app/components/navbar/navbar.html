@@ -1,0 +1,16 @@
+<nav class="navbar">
+  <div class="logo" (click)="navigateTo('/dashboard')">
+    <span>MyPortfolio</span>
+  </div>
+
+  <ul class="nav-links">
+    <li (click)="navigateTo('/dashboard')">Home</li>
+    <li (click)="navigateTo('/education')">Education</li>
+    <li (click)="navigateTo('/internship')">Internships</li>
+    <li (click)="navigateTo('/project')">Projects</li>
+    <li (click)="navigateTo('/certification')">Certifications & Achievements</li>
+    <li (click)="navigateTo('/others')">Others</li>
+    <li (click)="logout()">Log out</li>>
+    
+  </ul>
+</nav>

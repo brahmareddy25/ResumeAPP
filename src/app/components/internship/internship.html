@@ -1,0 +1,101 @@
+<app-navbar></app-navbar>
+<div class="education-dashboard">
+  <h2>💼 My Internships</h2>
+
+  <div class="education-container">
+    <div class="edu-header">
+      <span>Company</span>
+      <span>Role</span>
+      <span>Start Date</span>
+      <span>End Date</span>
+      <span>Description</span>
+      <span>Certificate</span>
+      <span>Actions</span>
+    </div>
+
+    <div class="edu-row" *ngFor="let intern of internshipList">
+      <span>{{ intern.companyName }}</span>
+      <span>{{ intern.role }}</span>
+      <span>{{ intern.startDate }}</span>
+      <span>{{ intern.endDate }}</span>
+      <span>{{ intern.description }}</span>
+ <span *ngIf="intern.certificate">
+      <button type="button" class="btn-view" (click)="viewCertificate(intern.certificate)">
+        📄 View
+      </button>
+    </span>
+      <span class="edu-actions">
+        <button class="btn-edit" (click)="onEdit(intern)">✏️ Edit</button>
+        <p></p>
+        <button class="btn-delete" (click)="onDelete(intern.internshipId)">
+          🗑 Delete
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <!-- Add/Edit Form -->
+  <div class="add-edu-form">
+    <h3>{{ isEditing ? '✏️ Edit Internship' : '➕ Add Internship' }}</h3>
+
+    <form (ngSubmit)="onSubmit()" #internshipForm="ngForm" enctype="multipart/form-data">
+      <div class="form-row">
+        <label>Company Name:</label>
+        <input
+          type="text"
+          [(ngModel)]="newInternship.companyName"
+          name="companyName"
+          required
+        />
+      </div>
+
+      <div class="form-row">
+        <label>Role:</label>
+        <input type="text" [(ngModel)]="newInternship.role" name="role" required />
+      </div>
+
+      <div class="form-row">
+        <label>Start Date:</label>
+        <input
+          type="date"
+          [(ngModel)]="newInternship.startDate"
+          name="startDate"
+          required
+        />
+      </div>
+
+      <div class="form-row">
+        <label>End Date:</label>
+        <input
+          type="date"
+          [(ngModel)]="newInternship.endDate"
+          name="endDate"
+          required
+        />
+      </div>
+
+      <div class="form-row">
+        <label>Description:</label>
+        <input
+          type="text"
+          [(ngModel)]="newInternship.description"
+          name="description"
+          required
+        />
+      </div>
+
+      <div class="form-row">
+        <label>Certificate (PDF/Image):</label>
+        <input type="file" (change)="onFileChange($event)" required />
+      </div>
+
+      <button
+        type="submit"
+        class="btn-add"
+        [disabled]="!internshipForm.form.valid || !selectedFile"
+      >
+        {{ isEditing ? 'Update Internship' : 'Add Internship' }}
+      </button>
+    </form>
+  </div>
+</div>

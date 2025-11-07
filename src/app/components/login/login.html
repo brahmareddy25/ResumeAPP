@@ -1,0 +1,50 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1>ResumeApp</h1>
+
+    <form #loginForm="ngForm" (ngSubmit)="onLogin()" novalidate>
+      
+      <!-- Username Input -->
+      <input
+        type="text"
+        name="username"
+        [(ngModel)]="user.username"
+        placeholder="Username"
+        required
+        pattern="^[A-Za-z0-9_]+$"
+        #username="ngModel"
+      />
+      <!-- Username Validation Errors -->
+      <div *ngIf="username.invalid && username.touched" style="color:red;">
+        <small *ngIf="username.errors?.['required']">Username is required.</small>
+        <small *ngIf="username.errors?.['pattern']">Only letters, digits, and underscores allowed. No spaces.</small>
+      </div>
+
+      <!-- Password Input -->
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="user.password"
+        placeholder="Password"
+        required
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{5,}$"
+        #password="ngModel"
+      />
+      <!-- Password Validation Errors -->
+      <div *ngIf="password.invalid && password.touched" style="color:red;">
+        <small *ngIf="password.errors?.['required']">Password is required.</small>
+        <small *ngIf="password.errors?.['pattern']">
+          Password must have at least 5 characters, including 1 uppercase, 1 lowercase, 1 number, and 1 special character. No spaces allowed.
+        </small>
+      </div>
+
+      <!-- Login Button (Disabled Until Valid) -->
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+
+    <!-- Message Display -->
+    <p style="color: red;">{{ message }}</p>
+
+    <p>New user? <a routerLink="/register">Register here</a></p>
+  </div>
+</div>

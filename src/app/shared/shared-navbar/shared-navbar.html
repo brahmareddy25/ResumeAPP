@@ -1,0 +1,14 @@
+<nav class="navbar">
+  <div class="logo" (click)="navigateTo('profileview/:id')">
+    <span>MyPortfolio</span>
+  </div>
+
+  <ul class="nav-links">
+    <li (click)="navigateTo('profileviews')">Home</li>
+    <li (click)="navigateTo('sharededucation')">Education</li>
+    <li (click)="navigateTo('sharedinternship')">Internships</li>
+    <li (click)="navigateTo('sharedproject')">Projects</li>
+    <li (click)="navigateTo('sharedcertificate')">Certifications</li>
+    <li (click)="navigateTo('sharedothers')">Others</li>
+  </ul>
+</nav>

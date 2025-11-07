@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+<div class="education-dashboard">
+  <h2>📄 My Documents</h2>
+
+  <!-- Documents Table -->
+  <div class="education-container">
+    <div class="edu-header">
+      <span>Document Name</span>
+      <span>File</span>
+      <span>Actions</span>
+    </div>
+
+    <div class="edu-row" *ngFor="let other of othersList">
+      <span>{{ other.documentName }}</span>
+     
+<span *ngIf="other.documentFile">
+      <button type="button" class="btn-view" (click)="viewCertificate(other.documentFile)">
+        📄 View
+      </button>
+    </span>
+      <span class="edu-actions">
+        <button class="btn-edit" (click)="onEdit(other)">✏️ Edit</button>
+        <button class="btn-delete" (click)="onDelete(other.othersId)">🗑 Delete</button>
+      </span>
+    </div>
+  </div>
+
+  <!-- Add/Edit Form -->
+  <div class="add-edu-form">
+    <h3>{{ isEditing ? '✏️ Edit Document' : '➕ Add Document' }}</h3>
+
+    <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div class="form-row">
+        <label>Document Name:</label>
+        <input type="text" [(ngModel)]="newOther.documentName" name="documentName" required />
+      </div>
+
+      <div class="form-row">
+        <label>Upload Document (PDF/Image):</label>
+        <input type="file" (change)="onFileChange($event)" />
+      </div>
+
+      <button type="submit" class="btn-add">{{ isEditing ? 'Update Document' : 'Add Document' }}</button>
+    </form>
+  </div>
+</div>

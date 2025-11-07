@@ -1,0 +1,31 @@
+<app-shared-navbar></app-shared-navbar>
+<div class="dashboard-container">
+  <div class="profile-card">
+    <!-- User photo -->
+    <img *ngIf="userPhotoUrl; else noPhoto" [src]="userPhotoUrl" class="profile-photo" alt="Profile Photo">
+    <ng-template #noPhoto>
+      <div class="no-photo">No Photo</div>
+    </ng-template>
+
+    <!-- Name and username -->
+    <h2>{{ user?.name }}</h2>
+    <p class="username">@{{ user?.username }}</p>
+
+    <!-- User info -->
+    <div class="user-info">
+      <p><strong>Email:</strong> {{ user?.email }}</p>
+      <p><strong>Phone:</strong> {{ user?.phoneNumber }}</p>
+      <p><strong>Gender:</strong> {{ user?.gender }}</p>
+      <p><strong>Age:</strong> {{ user?.age }}</p>
+      <p><strong>Address:</strong> {{ user?.address }}</p>
+    </div>
+
+    <!-- Social buttons -->
+    <div class="links">
+      <button class="btn-link" (click)="openLinkedIn()">LinkedIn</button>
+      <button class="btn-link" (click)="openGitHub()">GitHub</button>
+    </div>
+
+    <!-- No action buttons -->
+  </div>
+</div>

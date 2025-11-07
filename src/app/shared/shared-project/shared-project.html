@@ -1,0 +1,31 @@
+<app-shared-navbar></app-shared-navbar>
+<div class="education-dashboard">
+
+
+  <h2>📁 My Projects</h2>
+
+  <!-- Project Table-like Container -->
+  <div class="project-container">
+    <div class="edu-header">
+      <span>Title</span>
+      <span>Software</span>
+      <span>Technology</span>
+      <span>Description</span>
+      <span>Document</span>
+    </div>
+
+    <div class="edu-row" *ngFor="let project of projectList">
+      <span>{{ project.projectTitle }}</span>
+      <span>{{ project.softwareUsed }}</span>
+      <span>{{ project.technologyUsed }}</span>
+      <span class="desc-column">{{ project.description }}</span>
+      <span *ngIf="project.document">
+      <button type="button" class="btn-view" (click)="viewCertificate(project.document)">
+        📄 View
+      </button>
+    </span>
+      
+    </div>
+  </div>
+
+  
