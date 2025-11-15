@@ -1,0 +1,35 @@
+Welcome to the ResumeAPP wiki!
+
+Before Deploying this project 
+Modify this lines in Dashboard.ts in Frontend
+
+shareProfile() {
+  const shareLink = ${window.location.origin}/profileview/${this.user.id};
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(shareLink).then(() => {
+      alert(Profile link copied! Share this link:\n${shareLink});
+      window.open(shareLink, '_blank');
+    }).catch(() => {
+      this.fallbackCopy(shareLink);
+    });
+  } else {
+    this.fallbackCopy(shareLink);
+  }
+}
+
+fallbackCopy(text: string) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+
+  alert(Profile link copied! Share this link:\n${text});
+  window.open(text, '_blank');
+}
+
+Add "server.address=0.0.0.0" in Application Properties[Backend]
