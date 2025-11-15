@@ -99,8 +99,24 @@ export class ProjectComponent implements OnInit {
   }
 
   onFileChange(event: any) {
-    this.selectedFile = event.target.files[0];
+  const file = event.target.files[0];
+
+  if (!file) {
+    return;
   }
+
+  const maxSize = 1 * 1024 * 1024; // 1MB
+
+  if (file.size > maxSize) {
+    alert("File size must be less than 1MB!");
+    this.selectedFile = null;
+    event.target.value = ""; // clear input box
+    return;
+  }
+
+  this.selectedFile = file;
+}
+
 
   onSubmit() {
     const validationMessage = this.validateFields();

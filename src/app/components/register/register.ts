@@ -49,8 +49,24 @@ export class RegisterComponent {
   constructor(private userService: UserService, private router: Router) {}
 
   onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
+  const file = event.target.files[0];
+
+  if (!file) {
+    return;
   }
+
+  const maxSize = 1 * 1024 * 1024; // 1MB in bytes
+
+  if (file.size > maxSize) {
+    alert("File size must be less than 1MB!");
+    this.selectedFile = null; // reset the file
+    event.target.value = "";  // clear input field
+    return;
+  }
+
+  this.selectedFile = file;
+}
+
 
   onRegister() {
     if (!this.validateInputs()) return;

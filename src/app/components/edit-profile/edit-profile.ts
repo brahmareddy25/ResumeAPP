@@ -30,9 +30,25 @@ export class EditProfileComponent implements OnInit {
     this.router.navigate(['/dashboard']);
   }
 
-  onPhotoSelected(event: any): void {
-    this.selectedPhoto = event.target.files[0];
+ onPhotoSelected(event: any): void {
+  const file = event.target.files[0];
+
+  if (!file) {
+    return;
   }
+
+  const maxSize = 1 * 1024 * 1024; // 1MB
+
+  if (file.size > maxSize) {
+    alert("Photo size must be less than 1MB!");
+    this.selectedPhoto = null;
+    event.target.value = ""; // Clears the file input
+    return;
+  }
+
+  this.selectedPhoto = file; 
+}
+
 
   // ✅ Validation before saving
   isValidUserData(): boolean {
